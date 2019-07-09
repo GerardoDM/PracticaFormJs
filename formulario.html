@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Formulario</title>
+	<script src="js/jquery.js"></script>
+
+</head>
+<body>
+
+	<form action="" method="get" class="formulario">
+		
+<div class="form-row">
+	<input type="text" id="nombre" name="nombre" placeholder="Nombre">
+</div>
+
+<div class="form-fow">
+	<input type="text" id="edad" name="edad" placeholder="Edad">
+</div>
+
+ <div class="radiobuttons">
+    <fieldset class="sexo o">
+    <legend>Sexo</legend>
+    <label> <input type="radio" name="sexo" id="sexo" required value="masculino"> Masculino </label>
+    <label> <input type="radio" name="sexo" id="sexo" required value="femenino"> Femenino </label>
+  </fieldset>
+</div>
+
+<div class='form-row-carrera'>
+  <label for='carrera'>Carrera</label>
+  <select id='carrera' name='carrera'>
+    <option value='sistema'>Sistemas</option>
+    <option value='mecanica'>Mecánica</option>
+    <option value='aero'>Aeronáutica</option>
+    <option value='fisica'>Fisica</option>
+  </select>
+</div>
+
+<div class='form-row-estado'>
+  <label for='estado'>Estado</label>
+  <select id='estado' name='estado'>
+    <option value='coah'>Coahuila</option>
+    <option value='nl'>Nuevo León</option>
+    <option value='ch'>Chihuahua</option>
+    <option value='sono'>Sonora</option>
+  </select>
+</div>
+
+
+	</form>
+
+	<button type="button" class="button">Agregar</button>
+  <button type="button" class="button2">Mostrar</button>
+  <button type="button" class="button3">Crear</button>
+
+ <div id="container"></div>
+	
+</body>
+</html>
+
+<script>
+
+ /* $( document ).ready(function() {
+    alert( "ready!" );
+});*/
+
+ 
+ 
+
+ 	/*tomar valores de input y meterlos a propiedades de objetos*/	
+	
+
+  var usuarios = {}
+  var listausuarios = []
+
+
+    $(".button").click(function Agregar(){
+
+		 usuarios = {
+
+ 	"nombre": $('#nombre').val(),
+ 	"edad": $('#edad').val(),
+ 	"sexo": $('#sexo').val(),
+ 	"carrera": $('#carrera').val(),
+  	"estado": $('#estado').val(),    
+    ContarEdad : function(){
+  
+    if (this.edad > 18 )
+      this.ContarEdad = "Mayor de edad"
+    else if (this.edad < 18)
+      this.ContarEdad = "Menor de edad"
+
+  }
+  };
+       listausuarios.push(usuarios);
+      }); 
+
+
+    
+     $(".button2").click(function Mostrar(){
+
+    
+     console.log(listausuarios)
+   
+    
+    }); 
+
+
+
+
+
+
+ 	/*limpiar*/
+ /*	console.log(usuarios);
+ 	$('#nombre').val("");
+ 	$('#edad').val("");
+ 	$('#sexo').val("");
+ 	$('#carrera').val("");
+ 	$('#estado').val("");
+
+	});
+*/
+ 
+  /*Pasar array de objetos a tabla, Recorriendo la lista*/
+
+  /*var listausuarios=[]
+listausuarios.forEach(function(item){
+  $('tbody').append('<tr><td>'+item.nombre+'</td><td>'+item.edad'</td><td>'+ item.sexo +'</td></tr>')
+};*/
+
+
+     $(".button3").click(function(){
+
+var html = "<table border='1|1'>";
+for (var i = 0; i < listausuarios.length; i++) {
+    html+="<tr>";
+    html+="<td>"+ listausuarios[i].nombre+"</td>";
+    html+="<td>"+ listausuarios[i].edad+"</td>";
+    html+="<td>"+ listausuarios[i].sexo+"</td>";
+    html+="<td>"+ listausuarios[i].carrera+"</td>";
+    html+="<td>"+ listausuarios[i].estado+"</td>";
+    html+="<td>"+listausuarios[i].ContarEdad+"</td>";
+
+    html+="</tr>";
+
+}
+html+="</table>";
+document.getElementById("container").innerHTML = html;
+
+});
+	
+</script>
